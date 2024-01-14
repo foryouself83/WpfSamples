@@ -9,7 +9,7 @@ A basic sample to learn about WPF.
   - Dependency Injection
     - [ServiceRegister](<https://github.com/foryouself83/WpfSamples/blob/master/CoreSamples/Services/Impl/ServiceRegister.cs>)
   - Navigator
-    - [NavigationService](<https://github.com/foryouself83/WpfSamples/blob/master/CoreSamples/Services/Impl/NavigatorService.cs>)
+    - [NavigatorService](<https://github.com/foryouself83/WpfSamples/blob/master/CoreSamples/Services/Impl/NavigatorService.cs>)
   - Templates
     - DataTemplate
     - ControlTemplate
