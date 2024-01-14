@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace CoreSamples.Services.Impl
+{
+    /// <summary>
+    /// Service를 등록하고 가져올 수 있는 class
+    /// Microsoft.Extensions.DependencyInjection 를 사용하여 serivce를 제공한다.
+    /// https://learn.microsoft.com/ko-kr/dotnet/core/extensions/dependency-injection
+    /// https://learn.microsoft.com/ko-kr/dotnet/core/extensions/dependency-injection-usage
+    /// </summary>
+    public class ServiceRegister
+    {
+        private static readonly ServiceRegister instance = new ServiceRegister();
+
+        /// <summary>
+        /// class instance
+        /// </summary>
+        public static ServiceRegister Instance => instance;
+        /// <summary>
+        /// Service 제공을 위한 provider
+        /// </summary>
+        protected IServiceProvider? serviceProvider { get; private set; }
+
+        public ServiceRegister()
+        {
+        }
+
+        /// <summary>
+        /// ServiceCollection을 Bulid하여 Provider를 생성한다.
+        /// </summary>
+        /// <param name="services"></param>
+        public void BulidService(IServiceCollection services)
+        {
+            serviceProvider = services.BuildServiceProvider();
+        }
+
+        /// <summary>
+        /// 필요한 Service를 가져온다
+        /// BulidService를 실행 후에 사용 가능하다.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="NullReferenceException"></exception>
+        public T GetService<T>() where T : class
+        {
+            if (serviceProvider is null) throw new NullReferenceException(nameof(serviceProvider));
+
+            return serviceProvider.GetRequiredService<T>();
+        }
+    }
+}
