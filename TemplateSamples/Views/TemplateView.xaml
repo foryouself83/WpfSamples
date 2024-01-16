@@ -3,14 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TemplateSamples.Views"
+             xmlns:selector="clr-namespace:TemplateSamples.Presentations.Selectors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <ControlTemplate x:Key="ListViewControlTemplate"
+                         TargetType="{x:Type ListView}">
+            <Border BorderBrush="Black"
+                    BorderThickness="1">
+                <ScrollViewer>
+                    <WrapPanel Orientation="Vertical">
+                        <TextBlock Text="ControlTemplate and DataTemplate"  HorizontalAlignment="Center"/>
+                        <ItemsPresenter />
+                    </WrapPanel>
+                </ScrollViewer>
+            </Border>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="PersonTemplate">
+            <StackPanel>
+                <TextBlock FontSize="15"
+                           HorizontalAlignment="Center"
+                           Text="{Binding Name}" />
+                <TextBlock FontSize="10"
+                           HorizontalAlignment="Center"
+                           Text="{Binding Description}" />
+            </StackPanel>            
+        </DataTemplate>
+
+        <DataTemplate x:Key="SubjectTemplate">
+            <StackPanel>
+                <TextBlock FontSize="15"
+                           HorizontalAlignment="Center"
+                           Text="{Binding Name}" />
+                <TextBlock FontSize="12"
+                           HorizontalAlignment="Center"
+                           Text="{Binding Description}" />
+                <TextBlock FontSize="10"
+                           HorizontalAlignment="Center"
+                           Text="{Binding Tuition}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <selector:ListViewItemTemplateSelector x:Key="ListViewItemTemplateSelector"
+                                               PersonTemplate="{StaticResource PersonTemplate}"
+                                               SubjectTemplate="{StaticResource SubjectTemplate}" />
         
     </UserControl.Resources>
     
-    <Grid Background="Blue">
-            
+    <Grid>
+        <ListView ItemsSource="{Binding Items}"
+                  Template="{StaticResource ListViewControlTemplate}"
+                  ItemTemplateSelector="{StaticResource ListViewItemTemplateSelector}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
 </UserControl>
