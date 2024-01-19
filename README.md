@@ -11,8 +11,8 @@ A basic sample to learn about WPF.
   - Navigator
     - [NavigatorService](<https://github.com/foryouself83/WpfSamples/blob/master/CoreSamples/Services/Impl/NavigatorService.cs>)
   - Templates
-    - DataTemplate
-    - ControlTemplate
+    - [DataTemplate](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Views/TemplateView.xaml#L118>)
+    - [ControlTemplate](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Views/TemplateView.xaml#L71>)
   - Styles
     - Button Style
     - TextBlock Style
