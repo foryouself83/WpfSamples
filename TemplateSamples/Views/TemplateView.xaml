@@ -7,19 +7,114 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+
+        <Style TargetType="{x:Type Button}"
+               x:Key="SlowFadeInButton">
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="Background"
+                    Value="White" />
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="Padding"
+                    Value="20" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border"
+                                Opacity="0"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1"
+                                                         Duration="0:0:0.5" />
+
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                         To="60"
+                                                         Duration="0:0:0.5" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Button.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0"
+                                                         Duration="0:0:0.5" />
+
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                         To="10"
+                                                         Duration="0:0:0.5" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        
         <ControlTemplate x:Key="ListViewControlTemplate"
                          TargetType="{x:Type ListView}">
             <Border BorderBrush="Black"
                     BorderThickness="1">
-                <ScrollViewer>
-                    <WrapPanel Orientation="Vertical">
-                        <TextBlock Text="ControlTemplate and DataTemplate"  HorizontalAlignment="Center"/>
-                        <ItemsPresenter />
-                    </WrapPanel>
-                </ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <StackPanel HorizontalAlignment="Left"
+                                    Orientation="Horizontal">
+                        </StackPanel>
+                        <TextBlock Text="Template Samples"
+                                   FontSize="18"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">                            
+                            <Button Content="&lt;"                                    
+                                    Width="120"
+                                    Command="{Binding PrevViewCommand}"
+                                    Style="{StaticResource SlowFadeInButton}"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ScrollViewer>
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Button Content="&gt;"
+                                    Width="120"
+                                    Command="{Binding NextViewCommand}"
+                                    Style="{StaticResource SlowFadeInButton}" />
+                        </Grid>
+                        
+                    </Grid>
+                </Grid>                
             </Border>
         </ControlTemplate>
-
+        
         <DataTemplate x:Key="PersonTemplate">
             <StackPanel>
                 <TextBlock FontSize="15"
@@ -48,18 +143,25 @@
         <selector:ListViewItemTemplateSelector x:Key="ListViewItemTemplateSelector"
                                                PersonTemplate="{StaticResource PersonTemplate}"
                                                SubjectTemplate="{StaticResource SubjectTemplate}" />
-        
     </UserControl.Resources>
     
     <Grid>
-        <ListView ItemsSource="{Binding Items}"
+        <ListView ItemsSource="{Binding Items}" 
                   Template="{StaticResource ListViewControlTemplate}"
                   ItemTemplateSelector="{StaticResource ListViewItemTemplateSelector}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" />
+                    <UniformGrid Columns="3" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Margin"
+                            Value="5" />
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
     </Grid>
 </UserControl>
