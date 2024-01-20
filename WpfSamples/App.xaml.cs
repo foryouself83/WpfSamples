@@ -75,15 +75,23 @@ namespace WpfSamples
             // 생성될때마다 새로 생성
             services.AddTransient<TemplateView>();
             services.AddTransient<TemplateViewModel>();
+            services.AddTransient<NavigationSampleView>();
+            services.AddTransient<NavigationSampleViewModel>();
 
+            var service = new ServiceRegister();
             // 한번만 생성
-            services.AddSingleton<INavigationService>(new NavigationService());
+            services.AddSingleton<IServiceRegister>(service);
+            services.AddSingleton<INavigationService>(new NavigationService(service));
+            services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowModel>();
 
-            ServiceRegister.Instance.BulidService(services);
+            // Service 생성
+            //ServiceRegister.Instance.BulidService(services);
+            service.BulidService(services);
 
+            var mainWindow = service.GetService<MainWindow>();
             //var mainWindow = ServiceRegister.Instance.GetService<MainWindow>();
-            var mainWindow = new MainWindow();
+            //var mainWindow = new MainWindow();
             mainWindow.Show();
         }
     }

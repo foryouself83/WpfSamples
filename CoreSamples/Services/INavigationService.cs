@@ -14,28 +14,28 @@ namespace CoreSamples.Services
         /// </summary>
         /// <typeparam name="TView"></typeparam>
         /// <returns></returns>
-        TView NavigateTo<TView>() where TView : UserControl;
+        public void NavigateTo<TView>() where TView : class;
 
         /// <summary>
         /// Stack View를 추가하고 해당 View를 반환
         /// </summary>
         /// <typeparam name="TView"></typeparam>
         /// <returns></returns>
-        TView Push<TView>() where TView : UserControl;
+        public object Push<TView>() where TView : class;
 
         /// <summary>
         /// Stack 추가된 view를 제거하고 이전 View를 반환
         /// </summary>
         /// <typeparam name="TView"></typeparam>
         /// <returns></returns>
-        TView Pop<TView>() where TView : UserControl;
+        object Pop();
 
         /// <summary>
         /// 현재 Stack 최상단에 있는 view를 반환
         /// </summary>
         /// <typeparam name="TView"></typeparam>
         /// <returns></returns>
-        TView Peek<TView>() where TView : UserControl;
+        public object Peek();
 
         /// <summary>
         /// Clear Stack 

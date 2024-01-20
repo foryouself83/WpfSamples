@@ -10,6 +10,6 @@
     </Window.Resources>
     
     <Grid>
-        <ContentControl Content="{Binding SelectedView}" />
+        <ContentControl Content="{Binding NavigationService.CurrentView}" />
     </Grid>
 </Window>
