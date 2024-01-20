@@ -4,15 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CoreSamples.Services.Impl;
+using CoreSamples.Services;
 using WpfSamples.ViewModels;
 
 namespace WpfSamples
@@ -22,11 +14,11 @@ namespace WpfSamples
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(IServiceRegister serviceRegistery)
         {
             InitializeComponent();
             // DataContext에 Service에서 불러온 Viewmodel을 삽입
-            this.DataContext = ServiceRegister.Instance.GetService<MainWindowModel>();
+            this.DataContext = serviceRegistery.GetService<MainWindowModel>();
         }
     }
 }

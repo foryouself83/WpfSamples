@@ -13,14 +13,8 @@ namespace CoreSamples.Services.Impl
     /// https://learn.microsoft.com/ko-kr/dotnet/core/extensions/dependency-injection
     /// https://learn.microsoft.com/ko-kr/dotnet/core/extensions/dependency-injection-usage
     /// </summary>
-    public class ServiceRegister
+    public class ServiceRegister : IServiceRegister
     {
-        private static readonly ServiceRegister instance = new ServiceRegister();
-
-        /// <summary>
-        /// class instance
-        /// </summary>
-        public static ServiceRegister Instance => instance;
         /// <summary>
         /// Service 제공을 위한 provider
         /// </summary>

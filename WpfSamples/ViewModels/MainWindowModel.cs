@@ -18,12 +18,13 @@ namespace WpfSamples.ViewModels
         /// Community Toolkit에서 지원하는 ObservableProperty 적용
         /// Public Get; Set; Notification event 등이 자동 적용된다.
         /// </summary>
-        [ObservableProperty]
-        private object _selectedView;
+        //[ObservableProperty]
+        //private object _selectedView;
 
         public MainWindowModel(INavigationService navigationService) : base(navigationService)
         {
-            _selectedView = navigationService.NavigateTo<TemplateView>();
+            //_selectedView = navigationService.NavigateTo<TemplateView>();
+            navigationService.NavigateTo<TemplateView>(); ;
         }
     }
 }
