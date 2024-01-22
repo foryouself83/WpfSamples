@@ -86,12 +86,9 @@ namespace WpfSamples
             services.AddSingleton<MainWindowModel>();
 
             // Service 생성
-            //ServiceRegister.Instance.BulidService(services);
             service.BulidService(services);
 
             var mainWindow = service.GetService<MainWindow>();
-            //var mainWindow = ServiceRegister.Instance.GetService<MainWindow>();
-            //var mainWindow = new MainWindow();
             mainWindow.Show();
         }
     }

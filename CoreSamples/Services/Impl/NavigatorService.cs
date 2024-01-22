@@ -11,29 +11,38 @@ namespace CoreSamples.Services.Impl
 {
     public partial class NavigationService : ObservableObject, INavigationService
     {
-        private readonly IServiceRegister serviceRegistery;
+        /// <summary>
+        /// 등록된 service를 불러오기 위한 service
+        /// </summary>
+        private readonly IServiceRegister _serviceRegistery;
+        /// <summary>
+        /// View Push, Pop을 위한 Stack
+        /// </summary>
         private readonly Stack<object> _views;
 
+        /// <summary>
+        /// 사용 중인 view
+        /// </summary>
         [ObservableProperty]
         public object? _currentView;
 
 
         public NavigationService(IServiceRegister serviceRegistery)
         {
-            this.serviceRegistery = serviceRegistery;
+            this._serviceRegistery = serviceRegistery;
             _views = new Stack<object>();
         }
 
         public void NavigateTo<TView>() where TView : class
         {
             _views.Clear();
-            CurrentView = serviceRegistery.GetService<TView>();
+            CurrentView = _serviceRegistery.GetService<TView>();
         }
 
 
         public object Push<TView>() where TView : class
         {
-            var view = serviceRegistery.GetService<TView>();
+            var view = _serviceRegistery.GetService<TView>();
             if (CurrentView is null)
             {
                 CurrentView = view;

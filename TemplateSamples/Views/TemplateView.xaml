@@ -14,7 +14,7 @@
     </UserControl.Resources>
     
     <Grid>
-        <ListView ItemsSource="{Binding Items}" 
+        <ListView ItemsSource="{Binding Items}"                   
                   Template="{StaticResource ListViewControlTemplate}"
                   ItemTemplateSelector="{StaticResource ListViewItemTemplateSelector}">
             <ListView.ItemsPanel>
