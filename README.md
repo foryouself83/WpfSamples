@@ -14,8 +14,7 @@ A basic sample to learn about WPF.
     - [DataTemplate](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Views/TemplateView.xaml#L118>)
     - [ControlTemplate](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Views/TemplateView.xaml#L71>)
   - Styles
-    - [Button Style](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Views/TemplateView.xaml#L11>)
-    - TextBlock Style
+    - [Button Style](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Views/TemplateView.xaml#L11>)    
 ## Tips
   - Unit Test
   - Debugging
