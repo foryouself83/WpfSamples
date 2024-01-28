@@ -21,7 +21,8 @@
                     <StackPanel HorizontalAlignment="Left"
                                 Orientation="Horizontal">
                     </StackPanel>
-                    <TextBlock Text="Template Samples"
+                    <TextBlock x:Name="PART_Header"
+                               Text="Template Samples"
                                FontSize="18"
                                HorizontalAlignment="Center" />
                 </Grid>
@@ -48,21 +49,50 @@
                                 Command="{Binding NextViewCommand}"
                                 Style="{StaticResource SlowFadeInButton}" />
                     </Grid>
-
                 </Grid>
             </Grid>
         </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="FontSize"
+                        TargetName="PART_Header"
+                        Value="22" />
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <DataTemplate x:Key="PersonTemplate">
         <StackPanel>
             <TextBlock FontSize="15"
                        HorizontalAlignment="Center"
+                       Name="personName"
                        Text="{Binding Name}" />
             <TextBlock FontSize="10"
                        HorizontalAlignment="Center"
+                       Name="descriptionText"
                        Text="{Binding Description}" />
         </StackPanel>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=Description}"
+                         Value="Inchon">
+                <Setter Property="Foreground"
+                        Value="blue"
+                        TargetName="descriptionText" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Description}"
+                         Value="Seoul">
+                <Setter Property="Foreground"
+                        Value="green"
+                        TargetName="descriptionText" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Description}"
+                         Value="Suwon">
+                <Setter Property="Foreground"
+                        Value="red"
+                        TargetName="descriptionText" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
     </DataTemplate>
 
     <DataTemplate x:Key="SubjectTemplate">
