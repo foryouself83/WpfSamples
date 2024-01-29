@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CoreSamples.Viewmodels;
 
 namespace CoreSamples.Services.Impl
 {
@@ -25,6 +20,8 @@ namespace CoreSamples.Services.Impl
         /// </summary>
         [ObservableProperty]
         public object? _currentView;
+
+        public Stack<object> Views { get { return _views; } }
 
 
         public NavigationService(IServiceRegister serviceRegistery)
