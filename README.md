@@ -16,6 +16,6 @@ A basic sample to learn about WPF.
   - Styles
     - [Button Style](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Views/TemplateView.xaml#L11>)    
 ## Tips
-  - Unit Test
+  - [Unit Test](<https://github.com/foryouself83/WpfSamples/tree/master/CoreSamplesTests>)
   - Debugging
     
