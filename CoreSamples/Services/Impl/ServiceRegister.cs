@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreSamples.Services.Impl
@@ -42,6 +39,7 @@ namespace CoreSamples.Services.Impl
         /// <exception cref="NullReferenceException"></exception>
         public T GetService<T>() where T : class
         {
+            Debug.Assert(serviceProvider is not null);
             if (serviceProvider is null) throw new NullReferenceException(nameof(serviceProvider));
 
             return serviceProvider.GetRequiredService<T>();
