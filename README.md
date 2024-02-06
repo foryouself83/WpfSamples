@@ -85,6 +85,7 @@ test environment.
 ## Implement
   - Dependency Injection
     - [ServiceRegister](<https://github.com/foryouself83/WpfSamples/blob/master/CoreSamples/Services/Impl/ServiceRegister.cs>)
+    - [NavigationSampleViewModel](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/ViewModels/NavigationSampleViewModel.cs>)
   - Navigator
     - [NavigatorService](<https://github.com/foryouself83/WpfSamples/blob/master/CoreSamples/Services/Impl/NavigatorService.cs>)
   - Templates
