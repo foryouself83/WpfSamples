@@ -1,8 +1,11 @@
 # WpfSamples
 A basic sample to learn about WPF.
-  - [Dependency Injection](<https://learn.microsoft.com/ko-kr/dotnet/core/extensions/dependency-injection>) and [Dependency inversion](<https://learn.microsoft.com/ko-kr/dotnet/architecture/modern-web-apps-azure/architectural-principles#dependency-inversion>).
-  - [DataTemplate](<https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.datatemplate?view=windowsdesktop-8.0>), [ControlTemplate](<https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.controls.controltemplate?view=windowsdesktop-8.0>).
-  - Used [Community Toolkit](<https://github.com/CommunityToolkit>).  
+- [Dependency Injection](<https://learn.microsoft.com/ko-kr/dotnet/core/extensions/dependency-injection>) and [Dependency inversion](<https://learn.microsoft.com/ko-kr/dotnet/architecture/modern-web-apps-azure/architectural-principles#dependency-inversion>).
+- [DataTemplate](<https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.datatemplate?view=windowsdesktop-8.0>), [ControlTemplate](<https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.controls.controltemplate?view=windowsdesktop-8.0>).
+
+## Used nuget
+- [Community Toolkit](<https://github.com/CommunityToolkit>)
+- [Microsoft.Extensions.DependencyInjection](<https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection>)
 
 ## Description
 ### Dependency Injection
@@ -20,7 +23,7 @@ A basic sample to learn about WPF.
     - Unit tests can be separated by object
 #### Implementation Methods
   - Nuget
-    - Download "Microsoft.Extensions.DependencyInjection"
+    - Download [Microsoft.Extensions.DependencyInjection](<https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection>)
   - App.xaml.cs
      - Override the "OnStartUp" method
      - Create a "ServiceCollection"
