@@ -70,7 +70,7 @@ A basic sample to learn about WPF.
 - Arrange
   - Set up all the prerequisites for the test. In this step, you create the target object to test, set the required input values, and configure the test environment.
 test environment.
-- Act
+- Action
   - Call the object or method under test and perform the behavior you want to verify in your test code. This is where the actual execution of the test takes place.
 - Assert
   - Validate the results of your test and verify that the expected results match the actual results. This step determines whether the test succeeded or failed. 
