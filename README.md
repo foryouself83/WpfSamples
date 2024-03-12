@@ -94,7 +94,7 @@ test environment.
   - Selector
     - [DataTemplateSelector](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Presentations/Selectors/ListViewItemTemplateSelector.cs>)
   - Styles
-    - [Button Style](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Views/TemplateView.xaml#L11>)    
+    - [ListView Style](<https://github.com/foryouself83/WpfSamples/blob/master/TemplateSamples/Views/TemplateView.xaml#L11>)    
   - [Unit Test](<https://github.com/foryouself83/WpfSamples/tree/master/CoreSamplesTests>)
 ## Tips
   - Debugging
