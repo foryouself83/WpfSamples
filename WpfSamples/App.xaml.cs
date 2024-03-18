@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using CoreSamples.Services;
 using CoreSamples.Services.Impl;
 using Microsoft.Extensions.DependencyInjection;
 using TemplateSamples.ViewModels;
-using TemplateSamples.Views;
+using TemplateSamples.ViewModels.Ribbons;
 using WpfSamples.ViewModels;
 
 namespace WpfSamples
@@ -73,14 +68,16 @@ namespace WpfSamples
             var services = new ServiceCollection();
 
             // 생성될때마다 새로 생성
-            services.AddTransient<TemplateView>();
             services.AddTransient<TemplateViewModel>();
-            services.AddTransient<NavigationSampleView>();
             services.AddTransient<NavigationSampleViewModel>();
+            services.AddTransient<TemplateRibbonViewModel>();
+            services.AddTransient<NavigationRibbonViewModel>();
 
             var service = new ServiceRegister();
             // 한번만 생성
             services.AddSingleton<IServiceRegister>(service);
+            services.AddSingleton<IEventBrokerService>(new EventBrokerService());
+            services.AddSingleton<IRibbonMenuService>(new RibbonMenuService(service));
             services.AddSingleton<INavigationService>(new NavigationService(service));
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowModel>();

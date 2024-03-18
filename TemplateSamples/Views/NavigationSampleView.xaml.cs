@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using CoreSamples.Services;
-using TemplateSamples.ViewModels;
+﻿using System.Windows.Controls;
 
 namespace TemplateSamples.Views
 {
@@ -15,11 +7,9 @@ namespace TemplateSamples.Views
     /// </summary>
     public partial class NavigationSampleView : UserControl
     {
-        public NavigationSampleView(IServiceRegister serviceRegistery)
+        public NavigationSampleView()
         {
             InitializeComponent();
-            // DataContext에 Service에서 불러온 Viewmodel을 삽입
-            this.DataContext = serviceRegistery.GetService<NavigationSampleViewModel>();
         }
     }
 }

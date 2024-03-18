@@ -30,10 +30,10 @@ namespace CoreSamples.Services.Impl
             _views = new Stack<object>();
         }
 
-        public void NavigateTo<TView>() where TView : class
+        public void NavigateTo<TViewModel>() where TViewModel : class
         {
             _views.Clear();
-            CurrentView = _serviceRegistery.GetService<TView>();
+            CurrentView = _serviceRegistery.GetService<TViewModel>();
         }
 
 

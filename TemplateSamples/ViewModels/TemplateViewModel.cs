@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
+using CoreSamples.Events;
 using CoreSamples.Services;
 using CoreSamples.Viewmodels.Impl;
 using TemplateSamples.Models;
-using CommunityToolkit.Mvvm.Input;
-using TemplateSamples.Views;
 
 namespace TemplateSamples.ViewModels
 {
     public partial class TemplateViewModel : ViewmodelBase
     {
         public ObservableCollection<TemplateItem> Items { get; set; }
-        public TemplateViewModel(INavigationService navigationService) : base(navigationService)
+        public TemplateViewModel(IRibbonMenuService ribbonMenuService, INavigationService navigationService, IEventBrokerService eventBrokerService) : base(ribbonMenuService, navigationService, eventBrokerService)
         {
             Items = new ObservableCollection<TemplateItem>
             {
@@ -27,6 +22,13 @@ namespace TemplateSamples.ViewModels
                 new Subject("WPF", "Competent", 300000),
                 new Subject("WPF", "Proficient", 500000),
             };
+
+            eventBrokerService.Subscribe<ChangedFontSizeEvent>(OnChangedFontSizeEvent);
+        }
+
+        public void OnChangedFontSizeEvent(ChangedFontSizeEvent e)
+        {
+
         }
 
         [RelayCommand]
@@ -37,7 +39,7 @@ namespace TemplateSamples.ViewModels
         [RelayCommand]
         public void NextView()
         {
-            NavigationService.Push<NavigationSampleView>();
+            NavigationService.Push<NavigationSampleViewModel>();
         }
     }
 }

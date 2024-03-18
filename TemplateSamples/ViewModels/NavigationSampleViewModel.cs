@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using CoreSamples.Services;
 using CoreSamples.Viewmodels.Impl;
 using TemplateSamples.Models;
-using TemplateSamples.Views;
 
 namespace TemplateSamples.ViewModels
 {
-    public partial class NavigationSampleViewModel :ViewmodelBase
+    public partial class NavigationSampleViewModel : ViewmodelBase
     {
         public ObservableCollection<TemplateItem> Items { get; set; }
-        public NavigationSampleViewModel(INavigationService navigationService) : base(navigationService)
+        public NavigationSampleViewModel(IRibbonMenuService ribbonMenuService, INavigationService navigationService, IEventBrokerService eventBrokerService) : base(ribbonMenuService, navigationService, eventBrokerService)
         {
             Items = new ObservableCollection<TemplateItem>
             {
@@ -35,7 +29,7 @@ namespace TemplateSamples.ViewModels
         [RelayCommand]
         public void NextView()
         {
-            NavigationService.Push<TemplateView>();
+            NavigationService.Push<TemplateViewModel>();
         }
     }
 }

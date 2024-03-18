@@ -2,14 +2,51 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ribbonviewmodels="clr-namespace:TemplateSamples.ViewModels.Ribbons;assembly=TemplateSamples"
+        xmlns:ribbonviews="clr-namespace:TemplateSamples.Views.Ribbons;assembly=TemplateSamples"
+        xmlns:contentviewmodels="clr-namespace:TemplateSamples.ViewModels;assembly=TemplateSamples"
+        xmlns:contentviews="clr-namespace:TemplateSamples.Views;assembly=TemplateSamples"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
 
     <Window.Resources>
+        <DataTemplate DataType="{x:Type ribbonviewmodels:NavigationRibbonViewModel}">
+            <ribbonviews:NavigationRibbonView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ribbonviewmodels:TemplateRibbonViewModel}">
+            <ribbonviews:TemplateRibbonView />
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type contentviewmodels:NavigationSampleViewModel}">
+            <contentviews:NavigationSampleView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type contentviewmodels:TemplateViewModel}">
+            <contentviews:TemplateView />
+        </DataTemplate>
     </Window.Resources>
-    
+
     <Grid>
-        <ContentControl Content="{Binding NavigationService.CurrentView}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <ContentControl Content="{Binding RibbonMenuService.CurrentRibbonView}" />
+        </Grid>
+        <Grid Grid.Row="1">            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="120" Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                
+            </Grid>
+            <Grid Grid.Column="1">
+                <ContentControl Content="{Binding NavigationService.CurrentView}" />
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
