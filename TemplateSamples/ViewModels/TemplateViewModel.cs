@@ -26,7 +26,7 @@ namespace TemplateSamples.ViewModels
             eventBrokerService.Subscribe<ChangedFontSizeEvent>(OnChangedFontSizeEvent);
         }
 
-        public void OnChangedFontSizeEvent(ChangedFontSizeEvent e)
+        public void OnChangedFontSizeEvent(object serder, ChangedFontSizeEvent e)
         {
 
         }

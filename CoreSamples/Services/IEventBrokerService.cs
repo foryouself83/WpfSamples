@@ -4,7 +4,7 @@ namespace CoreSamples.Services
 {
     public interface IEventBrokerService
     {
-        void Publish<TEvent>(TEvent ev) where TEvent : notnull;
-        void Subscribe<TEvent>(Action<TEvent> action) where TEvent : notnull;
+        void Publish<TEvent>(object serder, TEvent ev) where TEvent : notnull;
+        void Subscribe<TEvent>(Action<object, TEvent> action) where TEvent : notnull;
     }
 }
