@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CoreSamples.Services.Impl
@@ -55,6 +57,9 @@ namespace CoreSamples.Services.Impl
         {
             if (_views.TryPop(out var view))
             {
+                if (view is IDisposable disposable)
+                    disposable.Dispose();
+
                 CurrentView = view;
                 return view;
             }

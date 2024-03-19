@@ -31,6 +31,16 @@ namespace CoreSamples.Services.Impl
 
             _subscriptions[eventType].Add((sender, obj) => action(sender, (TEvent)obj));
         }
+
+        public void UnSubscribe<TEvent>(Action<object, TEvent> action) where TEvent : notnull
+        {
+            Type eventType = typeof(TEvent);
+
+            if (_subscriptions.ContainsKey(eventType))
+            {
+                _subscriptions[eventType].RemoveAll(subscription => subscription.Equals(action));
+            }
+        }
     }
 
 }

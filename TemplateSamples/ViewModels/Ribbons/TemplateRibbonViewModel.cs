@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+
 using CoreSamples.Events;
 using CoreSamples.Services;
 
@@ -15,7 +16,7 @@ namespace TemplateSamples.ViewModels.Ribbons
         [RelayCommand]
         public void ChangedFontSize()
         {
-            _eventBrokerService.Publish(this, new ChangedFontSizeEvent() { FontSize = 11 });
+            _eventBrokerService.Publish(this, new ChangedTemplateEvent() { FontSize = 11 });
         }
     }
 }
