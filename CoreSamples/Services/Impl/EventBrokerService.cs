@@ -5,21 +5,9 @@ namespace CoreSamples.Services.Impl
 {
     public class EventBrokerService : IEventBrokerService
     {
-        private readonly Dictionary<Type, List<Action<object>>> _subscriptions = new Dictionary<Type, List<Action<object>>>();
+        private readonly Dictionary<Type, List<Action<object, object>>> _subscriptions = new Dictionary<Type, List<Action<object, object>>>();
 
-        public void Subscribe<TEvent>(Action<TEvent> action) where TEvent : notnull
-        {
-            Type eventType = typeof(TEvent);
-
-            if (!_subscriptions.ContainsKey(eventType))
-            {
-                _subscriptions[eventType] = new List<Action<object>>();
-            }
-
-            _subscriptions[eventType].Add(o => action((TEvent)o));
-        }
-
-        public void Publish<TEvent>(TEvent @event) where TEvent : notnull
+        public void Publish<TEvent>(object serder, TEvent @event) where TEvent : notnull
         {
             Type eventType = typeof(TEvent);
 
@@ -27,9 +15,21 @@ namespace CoreSamples.Services.Impl
             {
                 foreach (var action in _subscriptions[eventType])
                 {
-                    action.Invoke(@event);
+                    action.Invoke(serder, @event);
                 }
             }
+        }
+
+        public void Subscribe<TEvent>(Action<object, TEvent> action) where TEvent : notnull
+        {
+            Type eventType = typeof(TEvent);
+
+            if (!_subscriptions.ContainsKey(eventType))
+            {
+                _subscriptions[eventType] = new List<Action<object, object>>();
+            }
+
+            _subscriptions[eventType].Add((sender, obj) => action(sender, (TEvent)obj));
         }
     }
 
