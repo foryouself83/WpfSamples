@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 using CoreSamples.Events;
 using CoreSamples.Services;
@@ -16,7 +17,8 @@ namespace TemplateSamples.ViewModels.Ribbons
         [RelayCommand]
         public void ChangedFontSize()
         {
-            _eventBrokerService.Publish(this, new ChangedTemplateEvent() { FontSize = 11 });
+            WeakReferenceMessenger.Default.Send(new ChangedTemplateEvent() { Sender = this, FontSize = 20 });
+            _eventBrokerService.Publish(this, new ChangedTemplateEvent() { Sender = this, FontSize = 11 });
         }
     }
 }

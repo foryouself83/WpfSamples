@@ -5,6 +5,7 @@
     /// </summary>
     public class ChangedTemplateEvent
     {
+        public object? Sender { get; set; }
         public int FontSize { get; set; }
     }
 }

@@ -38,7 +38,8 @@ namespace CoreSamples.Services.Impl
 
             if (_subscriptions.ContainsKey(eventType))
             {
-                _subscriptions[eventType].RemoveAll(subscription => subscription.Equals(action));
+                var subscriptions = _subscriptions[eventType];
+                subscriptions.Clear();
             }
         }
     }

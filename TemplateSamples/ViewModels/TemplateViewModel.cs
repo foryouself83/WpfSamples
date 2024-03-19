@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 using CoreSamples.Events;
 using CoreSamples.Services;
@@ -29,6 +30,10 @@ namespace TemplateSamples.ViewModels
 
             _eventBrokerService = eventBrokerService;
 
+            // WeakReferenceMessenger 를 활용
+            WeakReferenceMessenger.Default.Register<ChangedTemplateEvent>(this, OnChangedFontSizeEvent);
+
+            // pub / sub pattern
             eventBrokerService.Subscribe<ChangedTemplateEvent>(OnChangedFontSizeEvent);
         }
 
@@ -52,6 +57,7 @@ namespace TemplateSamples.ViewModels
         {
             base.Dispose(disposing);
 
+            WeakReferenceMessenger.Default.Unregister<ChangedTemplateEvent>(this);
             _eventBrokerService.UnSubscribe<ChangedTemplateEvent>(OnChangedFontSizeEvent);
         }
     }
